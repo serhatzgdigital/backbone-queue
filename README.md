@@ -10,7 +10,7 @@ dropped message is acceptable (e.g. "a socket should re-render").
 ## API
 
 ```go
-c, err := queue.Dial(os.Getenv("RABBITMQ_URL")) // amqp://user:pass@host:5672/backbone
+c, err := queue.Dial(os.Getenv("RABBITMQ_URL")) // amqp://user:pass@host:5672backbone
 defer c.Close()
 
 if err := c.DeclareQueue("notification.dispatch"); err != nil { ... }
@@ -31,7 +31,7 @@ err = c.Consume(ctx, "notification.dispatch", 5, func(ctx context.Context, messa
 
 ## Conventions
 
-- **Vhost**: all backbone queues live under `/backbone`.
+- **Vhost**: all backbone queues live under `backbone`.
 - **Queue naming**: `<service>.<purpose>`, e.g. `notification.dispatch`.
 - **Dead-letter queue**: `<queue>.dlq`, declared automatically by
   `DeclareQueue`.
